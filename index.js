@@ -17,15 +17,15 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);
-      },
+    },
 })
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage })
 
 app.post('/api/upload', upload.single('file'), function (req, res) {
     const file = req.file
     console.log(file);
-    res.status(200).json(file && file.filename)
+    res.status(200).json(file.filename)
 })
 
 app.use("/api/posts", postRoutes)
