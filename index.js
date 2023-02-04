@@ -10,6 +10,8 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
+const port = process.env.PORT || 3500; // Get environment variable PORT from process.yml configuration.
+
 //handling image uploads using multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -31,6 +33,6 @@ app.use("/api/posts", postRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 
-app.listen(8800, () => {
+app.listen(port, () => {
     console.log("Connected to DB!");
 })
