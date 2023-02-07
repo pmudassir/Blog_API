@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from "express";
 import postRoutes from "./routes/posts.js"
 import authRoutes from "./routes/auth.js"
@@ -7,10 +8,11 @@ import multer from "multer";
 
 const app = express()
 
+app.use( cors({ origin: '*' }) ); //enable any origin here
+const port = process.env.PORT || 8800; // Get environment variable PORT from process.yml configuration.
+
 app.use(express.json())
 app.use(cookieParser())
-
-const port = process.env.PORT || 3500; // Get environment variable PORT from process.yml configuration.
 
 //handling image uploads using multer
 const storage = multer.diskStorage({
