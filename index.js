@@ -6,12 +6,12 @@ import userRoutes from "./routes/users.js"
 import cookieParser from "cookie-parser";
 import multer from "multer";
 
+const port = process.env.PORT || 8800; // Get environment variable PORT from process.yml configuration.
 const app = express()
 
-app.use( cors({ origin: '*' }) ); //enable any origin here
-const port = process.env.PORT || 8800; // Get environment variable PORT from process.yml configuration.
-
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cors({ credentials: true, origin: true }))//enable any origin here
 app.use(cookieParser())
 
 //handling image uploads using multer
